@@ -20,6 +20,9 @@ const App = () => {
 
   const totalFeedback = feedback.good + feedback.neutral + feedback.bad;
 
+  const positivePercentage =
+    totalFeedback === 0 ? 0 : Math.round((feedback.good / totalFeedback) * 100);
+
   return (
     <>
       <Descriptions />
@@ -33,7 +36,11 @@ const App = () => {
       {totalFeedback === 0 ? (
         <Notification message="Henüz geri bildirim yok" />
       ) : (
-        <Feedback feedback={feedback} total={totalFeedback} />
+        <Feedback
+          feedback={feedback}
+          total={totalFeedback}
+          positivePercentage={positivePercentage}
+        />
       )}
     </>
   );
