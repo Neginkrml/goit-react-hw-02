@@ -1,11 +1,7 @@
 import React from "react";
 
-const Notification = ({ message }) => {
-  return (
-    <>
-      <p>{message}</p>
-    </>
-  );
+const Notification = () => {
+  return <></>;
 };
 
 export default Notification;
