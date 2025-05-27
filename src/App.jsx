@@ -5,15 +5,13 @@ import Feedback from "./components/Feedback";
 import Notification from "./components/Notification";
 
 const App = () => {
-  useEffect(() => {
-    localStorage.setItem("feedback-data", JSON.stringfy(feedback));
-  }, [feedback]);
-
-  const [feedback, setFeedback] = useState({
-    good: 0,
-    neutral: 0,
-    bad: 0,
+  const [feedback, setFeedback] = useState(() => {
+    const stored = localStorage.getItem("feedback-data");
+    return stored ? JSON.parse(stored) : { good: 0, neutral: 0, bad: 0 };
   });
+  useEffect(() => {
+    localStorage.setItem("feedback-data", JSON.stringify(feedback));
+  }, [feedback]);
 
   const updateFeedback = (feedbackType) => {
     setFeedback((prev) => ({
